@@ -2,7 +2,7 @@ package Guitar_Shop;
 
 import java.lang.String;
 
-class Guitar{ 
+public class Guitar{ 
     private String serialNumber, builder, model, type, backWood, topWood; 
     private double price; 
 
