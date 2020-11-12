@@ -29,7 +29,7 @@ public class FindGuitarTester {
                 System.out.println("We have a "+guitar.getBuilder()+" "+
                 guitar.getModel()+" "+guitar.getType()+" "+"guitar: \n"+ 
                 guitar.getBackWood()+" back and sides\n"+guitar.getTopWood()+" top\n"+ 
-                "You can have it only for $"+guitar.getPrice()+"!\n ------------");
+                "You can have it only for $"+guitar.getPrice()+"!\n ----");
             }
         }
         else 
