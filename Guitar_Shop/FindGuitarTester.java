@@ -1,7 +1,11 @@
 package Guitar_Shop;
 
 import Guitar_Shop.Inventory; 
-import Guitar_Shop.Type; 
+import Guitar_Shop.Type;
+
+import java.util.Iterator;
+import java.util.List;
+
 import Guitar_Shop.Builder; 
 import Guitar_Shop.Wood;
 
@@ -17,10 +21,17 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory(); 
         initializeInventory(inventory);
         Guitar whatErinLikes = new Guitar("", 0, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER); 
-        Guitar guitar = inventory.search(whatErinLikes); 
-        if(guitar != null){ 
-            System.out.println("Guitar Found");
-        } 
+        List matchingGuitars = inventory.search(whatErinLikes); 
+        if(!matchingGuitars.isEmpty()){ 
+            System.out.println("Erin, you might like these guitars: ");
+            for(Iterator i = matchingGuitars.iterator(); i.hasNext();){ 
+                Guitar guitar = (Guitar)i.next(); 
+                System.out.println("We have a "+guitar.getBuilder()+" "+
+                guitar.getModel()+" "+guitar.getType()+" "+"guitar: \n"+ 
+                guitar.getBackWood()+" back and sides\n"+guitar.getTopWood()+" top\n"+ 
+                "You can have it only for $"+guitar.getPrice()+"!\n ------------");
+            }
+        }
         else 
             System.out.println("Sorry, Erin, we have nothing for you"); 
     }
