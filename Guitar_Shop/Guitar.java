@@ -3,10 +3,13 @@ package Guitar_Shop;
 import java.lang.String;
 
 public class Guitar{ 
-    private String serialNumber, builder, model, type, backWood, topWood; 
+    private String serialNumber, model; 
+    private Builder builder; 
+    private Type type; 
+    private Wood backWood, topWood;
     private double price; 
 
-    Guitar(String serialNumber, double price, String builder, String model, String type, String backWood, String topWood){
+    Guitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood){
         this.serialNumber = serialNumber; 
         this.price = price;   
         this.builder = builder; 
@@ -24,7 +27,7 @@ public class Guitar{
         return this.price; 
     } 
 
-    public String getBuilder(){ 
+    public Builder getBuilder(){ 
         return this.builder; 
     } 
 
@@ -32,15 +35,15 @@ public class Guitar{
         return this.model; 
     } 
 
-    public String getType(){ 
+    public Type getType(){ 
         return this.type; 
     }  
 
-    public String getTopWood(){ 
+    public Wood getTopWood(){ 
         return this.topWood; 
     }  
 
-    public String getBackWood(){ 
+    public Wood getBackWood(){ 
         return this.backWood;
     } 
 }
