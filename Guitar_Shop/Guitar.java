@@ -7,8 +7,7 @@ public class Guitar{
     private double price; 
     private GuitarSpec guitarSpec; 
 
-    Guitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood){ 
-        GuitarSpec guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood); 
+    Guitar(String serialNumber, double price, GuitarSpec guitarSpec){
         this.serialNumber = serialNumber; 
         this.price = price; 
         this.guitarSpec = guitarSpec; 
