@@ -1,22 +1,16 @@
 package Guitar_Shop; 
 
-import java.lang.String;
+import java.lang.String; 
 
 public class Guitar{ 
-    private String serialNumber, model; 
-    private Builder builder; 
-    private Type type; 
-    private Wood backWood, topWood;
+    private String serialNumber; 
     private double price; 
+    private GuitarSpec guitarSpec; 
 
-    Guitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood){
+    Guitar(String serialNumber, double price, GuitarSpec guitarSpec){
         this.serialNumber = serialNumber; 
-        this.price = price;   
-        this.builder = builder; 
-        this.model = model; 
-        this.type = type; 
-        this.backWood = backWood; 
-        this.topWood = topWood; 
+        this.price = price; 
+        this.guitarSpec = guitarSpec; 
     } 
 
     public String getSerialNumber(){ 
@@ -27,23 +21,7 @@ public class Guitar{
         return this.price; 
     } 
 
-    public Builder getBuilder(){ 
-        return this.builder; 
-    } 
-
-    public String getModel(){ 
-        return this.model; 
-    } 
-
-    public Type getType(){ 
-        return this.type; 
-    }  
-
-    public Wood getTopWood(){ 
-        return this.topWood; 
-    }  
-
-    public Wood getBackWood(){ 
-        return this.backWood;
-    } 
+    public GuitarSpec getSpec(){ 
+        return this.guitarSpec;
+    }
 }

@@ -3,8 +3,6 @@ package Guitar_Shop;
 import java.lang.String; 
 import java.util.*; 
 
-import Guitar_Shop.Guitar;
-
 public class Inventory { 
     private List guitars; 
 
@@ -13,8 +11,9 @@ public class Inventory {
     } 
 
     public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood){ 
-        Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood); 
-        guitars.add(guitar); 
+        GuitarSpec guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood); 
+        Guitar guitar = new Guitar(serialNumber, price, guitarSpec); 
+        this.guitars.add(guitar); 
     } 
 
     public Guitar getGuitar(String serialNumber){ 
@@ -26,20 +25,21 @@ public class Inventory {
         return null;
     } 
 
-    public List search(Guitar searchGuitar){ 
+    public List search(GuitarSpec searchSpec){ 
         List matchingGuitars = new LinkedList(); 
         for(Iterator i = this.guitars.iterator(); i.hasNext();){ 
             Guitar guitar = (Guitar)i.next(); 
-            if(searchGuitar.getBuilder() != guitar.getBuilder())
+            GuitarSpec guitarSpec = guitar.getSpec(); 
+            if(searchSpec.getBuilder() != guitarSpec.getBuilder())
                 continue; 
-            String model = searchGuitar.getModel(); 
-            if((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel()))) 
+            String model = searchSpec.getModel(); 
+            if((model != null) && (!model.equals("")) && (!model.equals(guitarSpec.getModel()))) 
                 continue; 
-            if(searchGuitar.getType() != guitar.getType())
+            if(searchSpec.getType() != guitarSpec.getType())
                 continue; 
-            if(searchGuitar.getTopWood() != guitar.getTopWood())
+            if(searchSpec.getTopWood() != guitarSpec.getTopWood())
                 continue; 
-            if(searchGuitar.getBackWood() != guitar.getBackWood()) 
+            if(searchSpec.getBackWood() != guitarSpec.getBackWood()) 
                 continue; 
             matchingGuitars.add(guitar); 
         } 
