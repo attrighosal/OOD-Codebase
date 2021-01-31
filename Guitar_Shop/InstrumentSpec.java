@@ -1,52 +1,34 @@
 package Guitar_Shop;
 
-public abstract class InstrumentSpec {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class InstrumentSpec {
     
-    private Builder builder; 
-    private String model; 
-    private Type type; 
-    private Wood backWood, topWood; 
+    private Map properties;  
 
-    public InstrumentSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood){
-        this.builder = builder; 
-        this.model = model; 
-        this.type = type; 
-        this.backWood = backWood; 
-        this.topWood = topWood;
+    public InstrumentSpec(Map properties){ 
+        if(properties == null)
+            this.properties = new HashMap(); 
+        else 
+            this.properties = new HashMap(properties); 
     } 
 
-    public Builder getBuilder(){ 
-        return this.builder; 
-    } 
+    public Object getProperty(String propertyName){
+        return properties.get(propertyName); 
+    }
+    
+    public Map getProperties(){ 
+        return this.properties; 
+    }
 
-    public String getModel(){ 
-        return this.model; 
-    } 
-
-    public Type getType(){ 
-        return this.type; 
-    } 
-
-    public Wood getTopWood(){ 
-        return this.topWood; 
-    }  
-
-    public Wood getBackWood(){ 
-        return this.backWood;
-    } 
-
-    public boolean matches(InstrumentSpec otherSpec){
-        if(this.builder != otherSpec.getBuilder())
-            return false;
-        String model = otherSpec.getModel(); 
-        if((model != null) && (!model.equals("")) && (!model.equals(otherSpec.getModel()))) 
-            return false;
-        if(this.type != otherSpec.getType())
-            return false; 
-        if(this.topWood != otherSpec.getTopWood()) 
-            return false;
-        if(this.backWood != otherSpec.getBackWood())  
-            return false; 
+    public boolean matches(InstrumentSpec otherSpec){ 
+        for(Iterator i = otherSpec.getProperties().keySet().iterator(); i.hasNext(); ){
+            String propertyName = (String)i.next(); 
+            if(!this.properties.get(propertyName).equals(otherSpec.getProperty(propertyName))) 
+                return false;  
+        } 
         return true;
     }
 
