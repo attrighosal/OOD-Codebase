@@ -1,59 +1,24 @@
 package Guitar_Shop;
 
-public class GuitarSpec {
-    private Builder builder; 
-    private String model; 
-    private Type type; 
+public class GuitarSpec extends InstrumentSpec{
     private int numStrings; 
-    private Wood backWood, topWood; 
 
-
-    GuitarSpec(Builder builder, String model, Type type, int numStrings, Wood backWood, Wood topWood){ 
-        this.builder = builder; 
-        this.model = model; 
-        this.type = type; 
+    public GuitarSpec(Builder builder, String model, Type type, int numStrings, Wood backWood, Wood topWood){ 
+        super(builder, model, type, backWood, topWood); 
         this.numStrings = numStrings;  
-        this.backWood = backWood; 
-        this.topWood = topWood; 
     } 
 
-    public Builder getBuilder(){ 
-        return this.builder; 
-    } 
-
-    public String getModel(){ 
-        return this.model; 
-    } 
-
-    public Type getType(){ 
-        return this.type; 
-    } 
-    
     public int getNumStrings(){ 
         return this.numStrings; 
-    }
-
-    public Wood getTopWood(){ 
-        return this.topWood; 
-    }  
-
-    public Wood getBackWood(){ 
-        return this.backWood;
     } 
-    
+
     public boolean matches(GuitarSpec otherSpec){ 
-        if(this.builder != otherSpec.getBuilder())
-            return false;
-        String model = otherSpec.getModel(); 
-        if((model != null) && (!model.equals("")) && (!model.equals(otherSpec.getModel()))) 
-            return false;
-        if(this.type != otherSpec.getType())
+        if(!super.matches(otherSpec))
             return false; 
-        if(this.numStrings != otherSpec.getNumStrings())
+        if(!(otherSpec instanceof GuitarSpec)) 
             return false; 
-        if(this.topWood != otherSpec.getTopWood()) 
-            return false;
-        if(this.backWood != otherSpec.getBackWood())  
+        GuitarSpec spec = (GuitarSpec)otherSpec; 
+        if(this.numStrings != spec.getNumStrings())
             return false; 
         return true; 
     }
